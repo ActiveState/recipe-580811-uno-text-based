@@ -1,0 +1,54 @@
+# Want to find out what you can do with this file? Head over to:
+# http://docs.activestate.com/platform/state/start.html
+project: https://platform.activestate.com/ActiveState-Recipes/recipe-580811-uno-text-based?commitID=d3c226f9-f96d-4417-a889-68017570d73d
+scripts:
+  - name: recipe
+    description: Runs the recipe
+    value: python3 recipe.py
+  - name: profile-recipe
+    description: Runs the recipe through cProfile, allowing you to find bottlenecks in the recipe
+    value: python3 -m cProfile recipe.py
+  - name: lint-recipe
+    description: Runs the recipe through pylint and pycodestyle, checking for common syntax and styling errors
+    language: python3
+    value: |
+      import subprocess
+      from colorama import Fore, Style
+      print(Style.BRIGHT + "=== pylint ===" + Style.RESET_ALL)
+      subprocess.run(['pylint', 'recipe.py'])
+      print()
+      print(Style.BRIGHT + "=== pycodestyle ===" + Style.RESET_ALL)
+      subprocess.run(['pycodestyle', 'recipe.py'])
+  - name: edit-recipe
+    description: Opens the recipe in your editor
+    language: python3
+    value: |
+      import subprocess, os, platform
+      if platform.system() == 'Darwin':
+        subprocess.run(['open', 'recipe.py'])
+      elif platform.system() == 'Windows':
+        os.startfile('recipe.py')
+      else:
+        subprocess.run(['xdg-open', 'recipe.py'])
+  - name: getting-started
+    description: Helpful information to help you get started with your recipe and the State Tool
+    language: python3
+    value: |
+      from colorama import Fore, Style
+      print(Fore.GREEN + Style.BRIGHT + """
+      You're now ready to run the recipe! The following commands are available to you:
+
+      - state run recipe - Runs the recipe
+      - state run lint-recipe - Runs the recipe through pylint and pycodestyle, checking for common syntax and styling errors
+      - state run edit-recipe - Opens the recipe in your editor 
+
+      To list all available scripts run 'state scripts'.
+
+      To make changes to the above commands open up activestate.yaml. 
+
+      For more information on how to use the State Tool run `state --help`, or to find out 
+      more about the State Tool itself visit https://www.activestate.com/products/platform/state-tool/.
+      """.strip() + Style.RESET_ALL)
+events:
+  - name: ACTIVATE
+    value: python3 ${scripts.getting-started.path()}
