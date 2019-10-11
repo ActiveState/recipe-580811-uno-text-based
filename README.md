@@ -1,6 +1,6 @@
 This repository covers the following recipe from code.activestate.com:
 
-[TKINTER TABLE WITH SCROLLBARS
+[UNO (TEXT-BASED)
 ](https://code.activestate.com/recipes/580811/)
 
 *Created by Brandon Martin on Sat, 15 Jul 2017*
