@@ -1,6 +1,6 @@
 # Want to find out what you can do with this file? Head over to:
 # http://docs.activestate.com/platform/state/start.html
-project: https://platform.activestate.com/ActiveState-Recipes/recipe-580811-uno-text-based?commitID=d3c226f9-f96d-4417-a889-68017570d73d
+project: https://platform.activestate.com/ActiveState-Recipes/recipe-580811-uno-text-based?commitID=924d6d9d-a6c6-4087-95de-11cff39d0296
 scripts:
   - name: recipe
     description: Runs the recipe
