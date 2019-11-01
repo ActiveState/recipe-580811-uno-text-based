@@ -5,33 +5,18 @@ scripts:
   - name: recipe
     description: Runs the recipe
     value: python3 recipe.py
-  - name: profile-recipe
-    description: Runs the recipe through cProfile, allowing you to find bottlenecks in the recipe
-    value: python3 -m cProfile recipe.py
   - name: lint-recipe
     description: Runs the recipe through pylint and pycodestyle, checking for common syntax and styling errors
     language: python3
     value: |
       import subprocess
-      from colorama import Fore, Style
-      print(Style.BRIGHT + "=== pylint ===" + Style.RESET_ALL)
+      print("=== pylint ===")
       subprocess.run(['pylint', 'recipe.py'])
       print()
-      print(Style.BRIGHT + "=== pycodestyle ===" + Style.RESET_ALL)
+      print("=== pycodestyle ===")
       subprocess.run(['pycodestyle', 'recipe.py'])
-  - name: edit-recipe
-    description: Opens the recipe in your editor
-    language: python3
-    value: |
-      import subprocess, os, platform
-      if platform.system() == 'Darwin':
-        subprocess.run(['open', 'recipe.py'])
-      elif platform.system() == 'Windows':
-        os.startfile('recipe.py')
-      else:
-        subprocess.run(['xdg-open', 'recipe.py'])
   - name: getting-started
-    description: Helpful information to help you get started with your recipe and the State Tool
+    description: Information to help you get started with your recipe and the State Tool
     language: python3
     value: |
       from colorama import Fore, Style
@@ -40,7 +25,6 @@ scripts:
 
       - state run recipe - Runs the recipe
       - state run lint-recipe - Runs the recipe through pylint and pycodestyle, checking for common syntax and styling errors
-      - state run edit-recipe - Opens the recipe in your editor 
 
       To list all available scripts run 'state scripts'.
 
